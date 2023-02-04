@@ -6,11 +6,11 @@ using ScreenplayTestFramework.Fixtures;
 
 namespace ScreenplayTestFramework.Tests
 {
-    public class DuckSearchTests : IClassFixture<ActorFixture>
+    public class DuckSearchTests : IClassFixture<ActorSarahFixture>
     {
-        private readonly ActorFixture _actorFixture;
+        private readonly ActorSarahFixture _actorFixture;
 
-        public DuckSearchTests(ActorFixture actorFixture)
+        public DuckSearchTests(ActorSarahFixture actorFixture)
         {
             _actorFixture = actorFixture;
         }        
@@ -20,11 +20,11 @@ namespace ScreenplayTestFramework.Tests
         [InlineData("music")]
         public void Actor_Searches_Duck_Page_For_(string searchTerm)
         {
-            _actorFixture.Actor.AttemptsTo(Navigate.ToUrl(DuckSearchPage.URL));
+            _actorFixture.Sarah.AttemptsTo(Navigate.ToUrl(DuckSearchPage.URL));
 
-            _actorFixture.Actor.AttemptsTo(SearchDuck.For(searchTerm));
+            _actorFixture.Sarah.AttemptsTo(SearchDuck.For(searchTerm));
 
-            _actorFixture.Actor.WaitsUntil(Appearance.Of(DuckSearchResultsPage.ResultsLink), IsEqualTo.True());
+            _actorFixture.Sarah.WaitsUntil(Appearance.Of(DuckSearchResultsPage.ResultsLink), IsEqualTo.True());
         }
     }
 }
